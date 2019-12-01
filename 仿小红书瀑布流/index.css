@@ -1,0 +1,182 @@
+.note-wrapper{
+    width: 1220px;
+    /* height: 500px; */
+    margin: 50px auto;
+    /* background-color: cadetblue; */
+    user-select: none;
+}
+
+.note-wrapper::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.note-column{
+   
+    float: left;
+    width: 220px;
+    margin: 0 12px;
+    /* background-color: chartreuse; */
+}
+
+.note{
+    position: relative;
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    /* background-color: crimson; */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .1) ;
+    overflow: hidden;
+}
+
+
+.note::after{
+    display: none;
+    content:'';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .2);
+    z-index: 1;
+}
+
+.note:hover::after{
+    display: block;
+}
+
+.note-img{
+    width: 100%;
+}
+
+
+.note-img img{
+    width: 100%;
+}
+
+/* 设置视频logo */
+.note-img .video{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-image: url(image/sprites.png);
+    background-position: -10px -10px;
+}
+
+.info{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    margin: 10px 15px;
+}
+
+.note-user{
+    position: relative;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom:10px;
+}
+
+.user-img ,.name ,.like-img ,.like-num{
+    display: inline-block;
+    /* vertical-align: middle; */
+}
+
+.user , .like{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.user{
+    
+    float: left;
+}
+
+.like{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    float: right;
+}
+
+/* 清浮动 */
+.note-user::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+
+.user-img{
+    position: relative;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.user-img img{
+    width: 100%;
+    height:100%;
+    
+}
+
+.verified{
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    bottom: 0;
+    right: 0;
+    background-image: url(image/sprites.png);
+    background-position: -48px -55px;
+}
+
+.name{
+    font-size: 12px;
+    color: #555;
+}
+
+.like-img{
+    width: 20px;
+    height: 20px;
+    background-image: url(image/sprites.png);
+    background-position: -55px -10px;
+    vertical-align: middle;
+}
+
+.like-num{
+    font-size: 12px;
+    color: #555;
+    vertical-align: middle;
+}
+
+.more{
+    width: 1220px;
+    height: 50px;
+    line-height: 50px;
+    color: #ff2741;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.heart-liked{
+    width: 20px;
+    height: 20px;
+    background-image: url(image/sprites.png);
+    background-position: -10px -55px;
+    vertical-align: middle;
+}
+
+
+
+
