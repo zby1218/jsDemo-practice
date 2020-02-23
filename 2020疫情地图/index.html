@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 800px;
+            height: 600px;
+        }
+    </style>
+    <script src="./src/echarts.min.js"></script>
+    <script src="./src/china.js"></script>
+</head>
+<body>
+    <div class="container"></div>
+    <script>
+        var dataArr = [];
+        const  url = 'http://192.168.0.107:3000/api/data';
+       //fetch调用promise，返回的是一个数据流，需要先转换成json
+        fetch(url).then(result=>
+        //不带大括号的箭头函数带有返回值
+                result.json()                       
+        ).then((result)=>{
+            console.log(result);
+            
+            const data = result.getListByCountryTypeService1;
+            console.log(data);
+            
+            
+            data.forEach(element => {
+                dataArr.push({
+                    name:element.provinceShortName,
+                    value:element.confirmedCount,
+                    deadCount:element.deadCount,
+                    curedCount:element.curedCount
+                })
+            });
+            console.log(dataArr);
+            
+       
+
+        const main = document.getElementsByClassName('container')[0];
+        
+        
+        const myChart = echarts.init(main);
+        myChart.setOption({
+            //配置标题
+            title:{
+                text:'nCov-全国实时疫情数据分布图',
+                subtext:'战斗进行时---他们还在努力',
+                left:'center'
+            },
+            //背景颜色
+            backgroundColor:'#f7f7f7',
+            visualMap:[
+                {
+                type:'piecewise',
+                pieces:[
+                    {gt:10000},
+                    {gt:1000,lte:9999},
+                    {gt:100,lte:999},
+                    {gt:10,lte:99},
+                    {gt:1,lte:9},
+                    {lte:0}
+                ],
+                inRange:{
+                    color:['rgb(255,255,255)','rgb(253,235,207)','rgb(229,90,78)','rgb(203,42,47)','rgb(129,28,36)','rgb(79,7,13)']
+                }
+                }
+            ],
+            tooltip:{
+                //信息出现的方式
+                triggerOn:'click',
+                formatter:function(param){
+                //南海诸岛需要处理，那个地方没有数据会报错              //新方法，判断是否有值
+                    return `地区:${param.name }<br/>确诊:${param?.value || 0}<br/>治愈:${param.data?.curedCount || 0}<br/>死亡:${param.data?.deadCount || 0}`
+                }
+            },
+            //echart属性
+            series:[{
+                type:'map',
+                map:'china',
+                label:{
+                    show:true
+                },
+                //向echart传入的数据
+                data:dataArr
+            }
+        ]
+            
+            
+            
+           
+        })
+    })
+    </script>
+</body>
+</html>
