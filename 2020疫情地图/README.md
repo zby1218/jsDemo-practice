@@ -14,6 +14,11 @@
 - 使用node中的superagent及cheerio插件爬取网上数据
 - 使用fetch实现ajax请求并解决其cors跨域问题
 
+文件的结构为 server文件夹两个文件分别进行数据的爬取及建立服务器，在index.html文件的script标签中写入请求及eCharts操作（有点偷懒，哈哈）
+### 爬取网站
+
+https://ncov.dxy.cn/ncovh5/view/pneumonia 
+
 ### 数据部分
 
 我们将使用一个简单的爬虫来爬取对应网站上的数据，整个过程分为以下部分
@@ -145,7 +150,7 @@ superagent.get(url).then(data=>{
   ```js
   var cors = require('cors');
   app.use(cors({
-      origin:['http://localhost:8083'],
+      origin:['http://localhost:3000'],
       methods:['GET','POST'],
       alloweHeaders:['Conten-Type', 'Authorization']
   }));
@@ -163,7 +168,7 @@ superagent.get(url).then(data=>{
     fetch(url).then(result=>
                   result.json()                       
           ).then((result)=>{
-       			//操作 	
+       			//操作数据 	
        });
               
   ```
@@ -301,7 +306,7 @@ myChart.setOption({
                 } ]
 ```
 
-- gt代表是>
+- gt代表>
 - lte代表<=
 
 通过以上代码就可以完成全部echarts的部分了。由于本人的代码能力问题，上文请求获取的数据存在作用域问题，在外部访问会有问题，我就将eCharts部分放入了then方法中。
