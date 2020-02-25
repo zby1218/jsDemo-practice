@@ -13,6 +13,8 @@ server.all('*', function(req, res, next) {
 });
 
 server.get('/api/data',(req, res)=>{
+   
+    
     fs.readFile(path.join(__dirname , './data.json'),'utf-8',(err,result)=>{
         if(err){
             console.log(err);
@@ -23,6 +25,7 @@ server.get('/api/data',(req, res)=>{
 })
 
 server.listen(3000,()=>{
+   
     console.log('running');
     
 })

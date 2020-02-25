@@ -7,13 +7,14 @@ const path = require('path');
 
 const url = 'https://ncov.dxy.cn/ncovh5/view/pneumonia';
 superagent.get(url).then(data=>{
-   
+    console.log(data);
+    
     const $ = cheerio.load(data.text);
-    console.log($);
+    // console.log($);
     
     var result = $('#getListByCountryTypeService1').html();
     
-    console.log(result);
+    // console.log(result);
     var dataObj = {};
     eval(result.replace(/window/g,'dataObj'))
     fs.writeFile(path.join(__dirname,'./data.json'),JSON.stringify(dataObj),(err)=>{
