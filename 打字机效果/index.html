@@ -4,51 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
     <style>
         body{
             padding: 0;
             margin: 0;
-            background-color: darkgrey;
+            background: darkgrey;
         }
-
         .main{
-          
-           position: absolute;
-           top: 50%;
-           left: 50%;
-           transform: translate(-50%,-50%);
-            height: 150px;
+            height: 100px;
+            line-height: 100px;
+            position: absolute;
+            top :50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
             font-size: 50px;
-            letter-spacing: .1em;
-           line-height: 50px;
+            letter-spacing: .2em;
+           
         }
-        .main .container{
+        .container{
             margin-right: 5px;
-
         }
-        .main .delete{
-            border-right: 3px solid black;
-            /* step-end 在每个阶段直接改变，不过渡*/
-            animation: blingbling 1.2s step-end infinite;
+        .delete{
+            border-right: 2px solid black;
+            /*step-end是动画过渡效果，设置step-end代表不过渡*/
+            animation: blingbling 1s step-end infinite;
         }
 
         @keyframes blingbling{
-            from , to{
-                border-color: black;
-            }
-            50%{
+            from,to{
                 border-color: transparent;
             }
+            50%{
+                border-color: black;
+            }
         }
+
     </style>
 </head>
 <body>
-
     <div class="main">
-        <span class="container" data='["你好","大家一起为了未来加油","fighting!","안녕하십니가"]'></span><span class="delete"></span>
+        <span class="container"></span><span class="delete"></span>
     </div>
     <script src="./index.js"></script>
 </body>
 </html>
-
